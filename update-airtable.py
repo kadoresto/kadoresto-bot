@@ -1,4 +1,5 @@
-import requests, json, urllib
+import requests, json, urllib, traceback
+from datetime import datetime, timedelta
 from secret import api_key
 from bs4 import BeautifulSoup
 from scraping_tools import tripadvisor
@@ -46,43 +47,56 @@ def check_for_offset(response_data):
 
 def update_records(records):
 
+
 	for index, record in enumerate(records, start=1) :
 
 		# Extracting AirTable data
-		tripadvisor_id = record['fields']['[TA] ID']
-		restaurant_name = record['fields']['Restaurant']
-		previous_review_count = record['fields']['[TA] Reviews']
-		previous_rating = record['fields']['[TA] Rating']
+		fields = record['fields']
+		tripadvisor_id = fields['[TA] ID']
+		restaurant_name = fields['Restaurant']
+		previous_review_count = fields['[TA] Reviews']
+		previous_rating = fields['[TA] Rating']
 
-		# Fetching TripAdvisor data
-		page = requests.get('https://www.tripadvisor.fr/Restaurant_Review-g187147-d' + str(tripadvisor_id))
-		html = BeautifulSoup(page.content, 'lxml')
+		# Check when restaurant was last updated
+		recently_updated = False
+		if "Last updated" in fields :
+			last_updated = datetime.strptime(fields['Last updated'], '%Y-%m-%d')
+			time_since_update = datetime.now() - last_updated
+			if time_since_update.days < 3 :
+				recently_updated = True
 
 		# Creating new restaurant instance
 		restaurant = Restaurant(tripadvisor_id=tripadvisor_id, name=restaurant_name)
 
-		# Converting TripAdvisor data to useable formats, and saving to new instance
-		restaurant.review_count = int(html.find("",  {"href": "#REVIEWS", "class": "more", }).span.string.replace(' ', '').replace('avis', ''))
-		restaurant.rating = str(html.find(class_='ui_bubble_rating')['class'][1]).replace('bubble_', '')
-		restaurant.rating = restaurant.rating[0] + "." + restaurant.rating[1]
-
-		# Logging results
+		# Preparing base message for console
 		progress = "{}/{}".format(index, len(response_data['records']))
-		rating_change = float(restaurant.rating) - float(previous_rating)
-		review_count_change = int(restaurant.review_count) - int(previous_review_count)
 		base_message = "{} | TA #{} | '{}', ".format(progress, tripadvisor_id, restaurant_name)
 
-		if rating_change == 0 and review_count_change == 0 :
-			message = base_message + "unchanged."
-			needs_update = False
+		if recently_updated :
+			print(base_message + 'was recently updated.')
 		else :
-			message = base_message + "rating changed by {0}, reviews changed by {1:+}.".format(rating_change, review_count_change)
-			needs_update = True
+#			try :
 
-		if needs_update :
+			# Fetching TripAdvisor data
+			page = requests.get('https://www.tripadvisor.fr/Restaurant_Review-g187147-d' + str(tripadvisor_id))
+			html = BeautifulSoup(page.content, 'lxml')		
+			restaurant.review_count = int(html.find("",  {"href": "#REVIEWS", "class": "more", }).span.string.replace(' ', '').replace('avis', ''))
+			restaurant.rating = str(html.find(class_='ui_bubble_rating')['class'][1]).replace('bubble_', '')
+			restaurant.rating = restaurant.rating[0] + "." + restaurant.rating[1]
+
+			# Logging results
+			rating_change = float(restaurant.rating) - float(previous_rating)
+			review_count_change = int(restaurant.review_count) - int(previous_review_count)
+
+			if rating_change == 0 and review_count_change == 0 :
+				message = base_message + "unchanged."
+			else :
+				message = base_message + "rating changed by {0}, reviews changed by {1:+}.".format(rating_change, review_count_change)
+
 			new_data = {
 				"[TA] Rating": restaurant.rating,
 				"[TA] Reviews": restaurant.review_count,
+				"Last updated": datetime.now().date().isoformat(),
 				}
 			url_to_update = airtable_table_url + '/' + record['id']
 			patch_response = call_airtable(url=url_to_update, request_type="PATCH", data=new_data)
@@ -90,8 +104,11 @@ def update_records(records):
 				print(message + " | Updated successfully.")
 			else :
 				print(message + " | Could not update ! ")
-		else :
-			print(message)
+				print('Status code : {}'.format(patch_response.status_code))
+				print(patch_response.json())
+
+#			except Exception:
+#				print(base_message + ' could not collect data from TripAdvisor. ABORTED.')
 
 params = {
 	"fields": ["[TA] ID", "[TA] Reviews", "[TA] Rating"],
