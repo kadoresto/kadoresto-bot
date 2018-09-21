@@ -1,0 +1,16 @@
+[
+    {
+        "geometry": {
+            "coordinates": [
+                -77.032,
+                38.913
+            ],
+            "type": "Point"
+        },
+        "properties": {
+            "description": "Washington, D.C.",
+            "title": "Mapbox"
+        },
+        "type": "Feature"
+    }
+]
