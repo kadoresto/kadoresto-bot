@@ -38,9 +38,9 @@ def geocode_restaurant(record):
 			coordinates = feature['geometry']['coordinates']
 			longitude, latitude = coordinates[0], coordinates[1]
 			new_data = {
-				"Longitude": longitude,
-				"Latitude": latitude,
-				"Geocode Relevance": relevance, 
+				"Longitude (GM)": longitude,
+				"Latitude (GM)": latitude,
+				"Geocode Relevance (GM)": relevance, 
 				}
 			update_response = airtable.update_record('Restaurants', record['id'], data=new_data)
 			if update_response.status_code == 200:
@@ -53,8 +53,8 @@ def geocode_restaurant(record):
 airtable.process_records(
 	table='Restaurants',
 	params={
-		"fields": ["Restaurant", "Adresse", "Longitude", "Latitude" ],
-		"filterByFormula": "{GeocodeRedo}",
+		"fields": ["Restaurant", "Adresse", "Longitude (GM)", "Latitude (GM)" ],
+#		"filterByFormula": "{GeocodeRedo}",
 	#	"pageSize": 100,
 		},
 	operation=geocode_restaurant,

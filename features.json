@@ -1,16 +1,405 @@
-[
-    {
-        "geometry": {
-            "coordinates": [
-                -77.032,
-                38.913
-            ],
-            "type": "Point"
-        },
-        "properties": {
-            "description": "Washington, D.C.",
-            "title": "Mapbox"
-        },
-        "type": "Feature"
-    }
-]
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.356549,
+					48.874614
+				]
+			},
+			"properties": {
+				"name": "BMK Paris-Bamako",
+				"address": "14 rue de la Fidelite",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 83,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12728905-Reviews-BMK_Paris_Bamako-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.3618014,
+					48.8713
+				]
+			},
+			"properties": {
+				"name": "SAaM",
+				"address": "59 Bis rue de Lancry",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 127,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d8670592-Reviews-SAaM-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.35579,
+					48.874796
+				]
+			},
+			"properties": {
+				"name": "Casta Diva",
+				"address": "102 rue du Faubourg Saint-Denis",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 47,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12269438-Reviews-Casta_Diva-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.363958,
+					48.874025
+				]
+			},
+			"properties": {
+				"name": "La Cantine de Quentin",
+				"address": "52 rue Bichat",
+				"status": "Refus du restaurateur",
+				"notes": "Pas chaud, fait deja des bons lui-même.",
+				"ta_reviews": 246,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d1048530-Reviews-La_Cantine_de_Quentin-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.365057,
+					48.872278
+				]
+			},
+			"properties": {
+				"name": "Siseng",
+				"address": "82 quai de Jemmapes",
+				"status": "À étudier",
+				"notes": "Fusion asiat' genre bao burger.",
+				"ta_reviews": 517,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d7656380-Reviews-Siseng-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.332634,
+					48.854107
+				]
+			},
+			"properties": {
+				"name": "Restaurant Pania",
+				"address": "Restaurant Pania",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 33,
+				"ta_rating": "5.0",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d13189595-Reviews-Restaurant_Pania-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.362388,
+					48.871685
+				]
+			},
+			"properties": {
+				"name": "Natives",
+				"address": "44 rue de Lancry",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 38,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12176074-Reviews-Natives-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.361258,
+					48.873221
+				]
+			},
+			"properties": {
+				"name": "Les Vinaigriers",
+				"address": "42 rue des Vinaigriers",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 195,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d6221031-Reviews-Les_Vinaigriers-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.364965,
+					48.873621
+				]
+			},
+			"properties": {
+				"name": "Pink Flamingo Canal\n  Saint-Martin",
+				"address": "67 rue Bichat",
+				"status": "À étudier",
+				"notes": "L'air pas au niveau",
+				"ta_reviews": 235,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d784276-Reviews-Pink_Flamingo_Canal_Saint_Martin-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.361117,
+					48.872513
+				]
+			},
+			"properties": {
+				"name": "La Bécane À Gaston",
+				"address": "24 rue Lucien Sampaix",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 57,
+				"ta_rating": "5.0",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12099045-Reviews-La_Becane_A_Gaston-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.36196,
+					48.874353
+				]
+			},
+			"properties": {
+				"name": "Kasha",
+				"address": "9 rue des Recollets",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 91,
+				"ta_rating": "5.0",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12950752-Reviews-Kasha-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.367918,
+					48.883162
+				]
+			},
+			"properties": {
+				"name": "La Guincheuse",
+				"address": "266 rue du Faubourg Saint Martin",
+				"status": "Interessé",
+				"notes": "Sarah, Thomas et Alex",
+				"ta_reviews": 71,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d5787818-Reviews-La_Guincheuse-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.36474,
+					48.872689
+				]
+			},
+			"properties": {
+				"name": "Canaletto Caffè",
+				"address": "88 quai de Jemmapes",
+				"status": "Restaurant de quartier / pas assez d'identité",
+				"notes": "Les pizzas ont l'air très bonnes, mais est-ce au niveau ?",
+				"ta_reviews": 173,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d3617464-Reviews-Canaletto_Caffe-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.354502,
+					48.874602
+				]
+			},
+			"properties": {
+				"name": "Le Comptoir Iodé",
+				"address": "8 rue de Paradis",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 119,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d8815591-Reviews-Le_Comptoir_Iode-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.370981,
+					48.872759
+				]
+			},
+			"properties": {
+				"name": "T'webla",
+				"address": "211 Rue Saint Maur",
+				"status": "Interessé",
+				"notes": "Proprio : Amale HMIMED",
+				"ta_reviews": 20,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12969722-Reviews-T_webla-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.358847,
+					48.874408
+				]
+			},
+			"properties": {
+				"name": "Marrow",
+				"address": "128 rue du Faubourg Saint Martin",
+				"status": "À démarcher",
+				"notes": "Arthur Combe & Hugo Blanchet",
+				"ta_reviews": 37,
+				"ta_rating": "5.0",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d12557430-Reviews-Marrow-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.362416,
+					48.871403
+				]
+			},
+			"properties": {
+				"name": "La Bringue",
+				"address": "38 rue Yves Toudic",
+				"status": "À étudier",
+				"notes": null,
+				"ta_reviews": 194,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d8506257-Reviews-La_Bringue-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.364615,
+					48.873439
+				]
+			},
+			"properties": {
+				"name": "Carmen Ragosta",
+				"address": "8 rue de la Grange aux Belles",
+				"status": "Pas ouvert le soir",
+				"notes": "Avis un peu chelou, mais l'air sympa",
+				"ta_reviews": 37,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d2707492-Reviews-Carmen_Ragosta-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.36233,
+					48.874104
+				]
+			},
+			"properties": {
+				"name": "Le Mal Barré",
+				"address": "47 rue Lucien Sampaix",
+				"status": "À démarcher",
+				"notes": null,
+				"ta_reviews": 288,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d3347099-Reviews-Le_Mal_Barre-Paris_Ile_de_France.html",
+				"go": true
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					2.364038,
+					48.872433
+				]
+			},
+			"properties": {
+				"name": "Fric-Frac",
+				"address": "79 Quai de Valmy",
+				"status": "À démarcher",
+				"notes": "Restau de croques-monsieur",
+				"ta_reviews": 133,
+				"ta_rating": "4.5",
+				"ta_url": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d9811036-Reviews-Fric_Frac-Paris_Ile_de_France.html",
+				"go": true
+			}
+		}
+	]
+}
