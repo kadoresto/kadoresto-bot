@@ -36,7 +36,7 @@ def list_records(table, params=''):
 	response = requests.get(url, headers=headers)
 	return response
 
-def process_records(table, params='', operation=print):
+def process_records(table, params='', operation=print, simultaneous=1):
 	# Used to apply a given function to many records
 	response = list_records(table, params)
 	response_data = response.json()
