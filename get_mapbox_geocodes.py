@@ -5,10 +5,10 @@ from settings.secret import MAPBOX
 
 geocoder = Geocoder(access_token=MAPBOX['PUBLIC_KEY'])
 
-PARIS_BOUNDING_BOX = [2.247152, 48.814355, 2.419898, 48.816082]
+#	PARIS_BOUNDING_BOX = [2.25, 48.814355, 2.419898, 48.816082]
 
 def geocode(address):
-	return geocoder.forward(address, bbox=PARIS_BOUNDING_BOX, limit=1, languages=['fr-FR', ])
+	return geocoder.forward(address, lon=2.338814, lat=48.861645, limit=1, languages=['fr-FR', ])
 
 def geocode_restaurant(record):
 	
@@ -54,8 +54,8 @@ airtable.process_records(
 	table='Restaurants',
 	params={
 		"fields": ["Restaurant", "Adresse", "Longitude", "Latitude" ],
-		"filterByFormula": "{GeocodeRedo}",
-	#	"pageSize": 100,
+#		"filterByFormula": "{Today's Trip}",
+#		"pageSize": 2,
 		},
 	operation=geocode_restaurant,
 	)
