@@ -1,4 +1,4 @@
-import requests
+import requests, asyncio
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from scraping_tools import tripadvisor
@@ -16,7 +16,7 @@ class Restaurant:
 	def __repr__(self):
 		return self.__str__()
 
-def update_record(record):
+async def update_record(record):
 
 	# Extracting AirTable data
 	fields = record['fields']
@@ -73,7 +73,7 @@ def update_record(record):
 				"Last updated": datetime.now().date().isoformat(),
 				}
 
-		update_response = airtable.update_record('Restaurant', record['id'], data=new_data)
+		update_response = airtable.update_record('Restaurants', record['id'], data=new_data)
 		if update_response.status_code == 200 :
 			print(message + " | Updated successfully.")
 		else :
@@ -81,18 +81,16 @@ def update_record(record):
 			print('Status code : {}'.format(update_response.status_code))
 			print(update_response.json())
 
-
-airtable.process_records(
-	table='Restaurants',
-	params={
-		"fields": ["Restaurant", "Last updated", "[TA] ID", "[TA] Reviews", "[TA] Rating", ],
-	#	"filterByFormula": "{Today's Trip}",
-	#	"pageSize": 100,
-		},
-	operation=update_record,
+loop = asyncio.get_event_loop()
+future = asyncio.ensure_future(
+	airtable.async_process_records(
+		table='Restaurants',
+		params={
+			"fields": ["Restaurant", "Last updated", "[TA] ID", "[TA] Reviews", "[TA] Rating", ],
+		#	"filterByFormula": "{Today's Trip}",
+		#	"pageSize": 100,
+			},
+		operation=update_record,
 	)
-
-
-#	restaurant.street_address = html.find(class_='street-address').string
-#	restaurant.locality = html.find(class_='locality').string.replace(',','')
-#	restaurant.url = page.url
+)
+loop.run_until_complete(future)
