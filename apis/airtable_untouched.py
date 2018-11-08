@@ -44,11 +44,27 @@ async def async_process_records(table, params='', operation=print):
     Applies a given "operation" function to multiple records
     '''
     tasks = [] # asynchronous tasks
-    response_data = list_records(table, params).json()
-    for record in response_data['records'] :
-        task = asyncio.ensure_future(operation(record))
-        tasks.append(task)
-    await asyncio.gather(*tasks)
+    response = list_records(table, params)
+    response_data = response.json()
+    offset = check_for_offset(response_data)
+    # if there are multiple pages of records
+    async with ClientSession() as session:
+        while offset :
+            for record in response_data['records'] :
+                task = asyncio.ensure_future(operation(record))
+                tasks.append(task)
+            params['offset'] = offset
+            response = list_records(table, params)
+            response_data = response.json()
+            await asyncio.gather(*tasks)
+            offset = check_for_offset(response_data)
+        else :
+            # if there is only one page of records,
+            # or when dealing with last page
+            for record in response_data['records'] :
+                task = asyncio.ensure_future(operation(record))
+                tasks.append(task)
+            await asyncio.gather(*tasks)
             
 
 def update_record(table, record_id, data):
