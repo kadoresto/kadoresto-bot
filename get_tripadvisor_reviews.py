@@ -24,6 +24,7 @@ async def update_record(record):
 	restaurant_name = fields['Restaurant']
 	previous_review_count = fields['[TA] Reviews']
 	previous_rating = fields['[TA] Rating']
+	ta_error = fields.get('[TA] Error', False) # True if previous parses failed
 
 	# Check when restaurant was last updated
 	recently_updated = False
@@ -39,7 +40,7 @@ async def update_record(record):
 	# Preparing base message for console
 	base_message = "TA #{} | '{}', ".format(tripadvisor_id, restaurant_name)
 
-	if recently_updated :
+	if recently_updated and not ta_error :
 		print(base_message + 'was recently updated.')
 	else :
 
@@ -48,7 +49,7 @@ async def update_record(record):
 		html = BeautifulSoup(page.content, 'lxml')		
 
 		try :
-			restaurant.review_count = int(html.find("",  {"href": "#REVIEWS", "class": "more", }).span.string.replace(' ', '').replace('avis', ''))
+			restaurant.review_count = int(html.find("span", {"class": "reviewCount"}).string.replace("\xa0avis", ""))
 			restaurant.rating = str(html.find(class_='ui_bubble_rating')['class'][1]).replace('bubble_', '')
 			restaurant.rating = restaurant.rating[0] + "." + restaurant.rating[1]
 		except Exception :
@@ -86,7 +87,7 @@ future = asyncio.ensure_future(
 	airtable.async_process_records(
 		table='Restaurants',
 		params={
-			"fields": ["Restaurant", "Last updated", "[TA] ID", "[TA] Reviews", "[TA] Rating", ],
+			"fields": ["Restaurant", "Last updated", "[TA] ID", "[TA] Reviews", "[TA] Rating", "[TA] Error"],
 		#	"filterByFormula": "{Today's Trip}",
 		#	"pageSize": 100,
 			},

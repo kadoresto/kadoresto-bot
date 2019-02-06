@@ -19,11 +19,9 @@ def prepare_data(data):
 
 def check_for_offset(response_data):
     if "offset" in response_data :
-        offset = response_data['offset']
+        return response_data['offset']
     else :
-        offset = False
-    return offset
-
+        return False
 
 # MAIN FUNCTIONS
 
@@ -32,7 +30,6 @@ def list_records(table, params=''):
     # Offset is used when there are more than 100 records
     params = urllib.parse.urlencode(params, True)
     url = AIRTABLE_DATABASE_URL + table + "?" + params
-#    print(url)
     response = requests.get(url, headers=headers)
     return response
 
@@ -45,11 +42,26 @@ async def async_process_records(table, params='', operation=print):
     '''
     tasks = [] # asynchronous tasks
     response_data = list_records(table, params).json()
-    for record in response_data['records'] :
-        task = asyncio.ensure_future(operation(record))
-        tasks.append(task)
+    offset = check_for_offset(response_data)
+
+    while offset :
+        records = response_data['records']
+        print("Offset :", offset)
+        for record in records :
+            task = asyncio.ensure_future(operation(record))
+            tasks.append(task)
+        params['offset'] = offset
+        response = list_records(table, params)
+        response_data = response.json()
+        offset = check_for_offset(response_data)
+    else :
+        records = response_data['records']
+        for record in records :
+            task = asyncio.ensure_future(operation(record))
+            tasks.append(task)
+
     await asyncio.gather(*tasks)
-            
+      
 
 def update_record(table, record_id, data):
     url = AIRTABLE_DATABASE_URL + table + '/' + record_id
